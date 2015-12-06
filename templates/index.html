@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- template usage example -->
+	{{template "head" .}}
+</head>
+<body>
+	<!-- controller functions examples -->
+	<p>Upendo!</p>
+	<p>{{.FunctionWithoutParams}}</p>
+	<p>{{.WithParams "string param" 123}}</p>
+
+	<!-- controller - map value -->
+	<p>Value from controller using key: "{{.mapKey}}"</p>
+
+	<!-- embeded functions example -->
+	<p>{{echo "static function call example! can be registered in controllers init"}}</p>
+
+	<!-- standard Go template package functionality -->
+{{if .mapKey}}
+	<p>Standard Go template functionality also works!</p>
+{{end}}
+	
+	<!-- templates, yay! -->
+	<p>Hint: see source! head contents added from template!</p>
+	<p><img src="/res/kittykiss.gif"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.someClass {
+    margin: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+#someId {
+    float:right;
+    margin-right:10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
