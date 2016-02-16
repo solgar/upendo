@@ -15,6 +15,7 @@ func init() {
 	pages.RegisterFunction("echo", echo)
 
 	router.Add("GET", "/", ExampleController{}, "Index")
+	router.Add("GET", "/:keyFromPath", ExampleController{}, "Index")
 }
 
 func (c ExampleController) Index() {
