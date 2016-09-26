@@ -1,4 +1,4 @@
-package main
+package upendo
 
 var (
 	Version             string = "unknown"

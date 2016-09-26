@@ -1,4 +1,4 @@
-package main
+package upendo
 
 import (
 	"fmt"
@@ -14,6 +14,21 @@ import (
 	_ "upendo/controller/loader"
 )
 
+func Start(appName string) {
+	fmt.Printf("upendo ver %s", fullVersion())
+	if Version != BasedOnVersion {
+		fmt.Printf(" based on %s", BasedOnVersion)
+	}
+	fmt.Printf(" running: %s", appName)
+	fmt.Println()
+
+	setup()
+
+	fmt.Println("Listening on port", ":"+settings.ServicePort)
+	http.HandleFunc("/", router.RouteRequest)
+	fmt.Println(http.ListenAndServe(":"+settings.ServicePort, nil))
+}
+
 // setup is called in main function to start listening for system signals and
 // load templates from "templates" folder
 func setup() {
@@ -25,20 +40,6 @@ func fullVersion() string {
 	return Version +
 		" m:" + strconv.Itoa(ModifiedFilesCount) +
 		" u:" + strconv.Itoa(UntrackedFilesCount)
-}
-
-func main() {
-	fmt.Printf("upendo ver %s", fullVersion())
-	if Version != BasedOnVersion {
-		fmt.Printf(" based on %s", BasedOnVersion)
-	}
-	fmt.Println()
-
-	setup()
-
-	fmt.Println("Listening on port", ":"+settings.ServicePort)
-	http.HandleFunc("/", router.RouteRequest)
-	fmt.Println(http.ListenAndServe(":"+settings.ServicePort, nil))
 }
 
 // TODO: move it to separate package and parametrize
