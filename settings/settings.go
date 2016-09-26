@@ -24,6 +24,9 @@ var (
 
 	// limits chain of routing calls to specified value
 	RoutingChainMax int
+
+	// if map files are ignored (js.map, css.map)
+	IgnoreMapFiles bool
 )
 
 func init() {
@@ -32,6 +35,7 @@ func init() {
 	flag.BoolVar(&ReloadTemplates, "reload-templates", false, "if \"true\" then on each request page templates are reloaded")
 	flag.BoolVar(&ArchiveSessions, "archive-sessions", true, "if \"true\" upon closing active sessions are archived to file")
 	flag.BoolVar(&RestoreSessions, "restore-sessions", true, "if \"true\" restores previously active sessions")
+	flag.BoolVar(&IgnoreMapFiles, "ignore-map-files", true, "if \"true\" \"file not found\" errors for .map files will be ignored")
 	flag.IntVar(&RoutingChainMax, "routing-chain-max", 4, "limits maximum routing calls to specified value")
 	flag.Parse()
 	if len(StartDir) > 0 && strings.HasSuffix(StartDir, "/") == false {
