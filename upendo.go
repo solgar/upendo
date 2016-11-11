@@ -5,20 +5,24 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"strconv"
 	"upendo/pages"
 	"upendo/router"
 	"upendo/session"
 	"upendo/settings"
 
+	// blank import to only trigger init
 	_ "upendo/controller/loader"
 )
 
+// Upendo version variables
+var (
+	VersionMajor = "0"
+	VersionMinor = "1"
+)
+
+// Start function starts upendo application with given name
 func Start(appName string) {
-	fmt.Printf("upendo ver %s", fullVersion())
-	if Version != BasedOnVersion {
-		fmt.Printf(" based on %s", BasedOnVersion)
-	}
+	fmt.Printf("upendo ver %s", VersionMajor + "." + VersionMinor)
 	fmt.Printf(" running: %s", appName)
 	fmt.Println()
 
@@ -34,12 +38,6 @@ func Start(appName string) {
 func setup() {
 	go listenToSignals()
 	pages.LoadTemplates(settings.TemplatesDir)
-}
-
-func fullVersion() string {
-	return Version +
-		" m:" + strconv.Itoa(ModifiedFilesCount) +
-		" u:" + strconv.Itoa(UntrackedFilesCount)
 }
 
 // TODO: move it to separate package and parametrize
