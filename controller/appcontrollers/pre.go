@@ -28,7 +28,7 @@ func CGet(cv reflect.Value, k string) interface{} {
 func CheckSession(controller reflect.Value) {
 	path := CGet(controller, "path").(string)
 
-	if strings.HasPrefix(path, "/css") || strings.HasPrefix(path, "/favico") || strings.HasPrefix(path, "/res") {
+	if strings.HasPrefix(path, "/css") || strings.HasPrefix(path, "/favico") || strings.HasPrefix(path, "/res") || strings.HasPrefix(path, "/js") {
 		return
 	}
 
