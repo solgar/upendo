@@ -33,7 +33,7 @@ func Start(appName string) {
 // load templates from "templates" folder
 func setup() {
 	go listenToSignals()
-	pages.LoadTemplates("templates")
+	pages.LoadTemplates(settings.TemplatesDir)
 }
 
 func fullVersion() string {

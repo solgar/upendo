@@ -35,10 +35,12 @@ func LoadTemplates(directory string) {
 	funcMap["redirect"] = router.Redirect
 	var err error
 	TemplatesRoot, err = template.New("root").Funcs(funcMap).ParseGlob(settings.StartDir + directory + "/*.*")
-	if err != nil {
+
+	if err == nil {
+		TemplatesRoot.Funcs(funcMap)
+	} else if !(!settings.RequireTemplates && strings.Contains(err.Error(), "pattern matches no files")) {
 		panic(err)
 	}
-	TemplatesRoot.Funcs(funcMap)
 }
 
 func RegisterFunction(name string, function interface{}) {

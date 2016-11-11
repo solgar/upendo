@@ -16,9 +16,15 @@ var (
 
 func HandlePageTemplate(controller interface{}, template string) {
 	if settings.ReloadTemplates {
-		pages.LoadTemplates("templates")
+		pages.LoadTemplates(settings.TemplatesDir)
 	}
+
 	buff := reflect.ValueOf(controller).MapIndex(reflect.ValueOf("writer")).Interface().(*bytes.Buffer)
+
+	if pages.TemplatesRoot == nil {
+		panic("TemplatesRoot is nil! Probably no templates found in directory: " + settings.StartDir + settings.TemplatesDir)
+	}
+
 	err := pages.TemplatesRoot.ExecuteTemplate(buff, template, controller)
 	if err != nil {
 		panic(err)
