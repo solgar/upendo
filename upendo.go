@@ -11,7 +11,8 @@ import (
 	"upendo/settings"
 
 	// blank import to only trigger init
-	_ "upendo/controller/loader"
+	_ "upendo/controller"
+	_ "upendo/controller/resources"
 )
 
 // Upendo version variables

@@ -12,6 +12,7 @@ import (
 	"upendo/settings"
 )
 
+// Resources is simple controller to handle resources at paths /res/* /css/* and /js/*
 type Resources map[string]interface{}
 
 func init() {

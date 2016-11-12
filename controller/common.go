@@ -5,13 +5,12 @@ import (
 	"io/ioutil"
 	"net/http"
 	"reflect"
-	_ "upendo/controller/resources"
 	"upendo/pages"
 	"upendo/settings"
 )
 
 var (
-	templates map[string]*pages.Page = make(map[string]*pages.Page)
+	templates = make(map[string]*pages.Page)
 )
 
 func HandlePageTemplate(controller interface{}, template string) {

@@ -1,4 +1,4 @@
-package appcontrollers
+package controller
 
 import (
 	"net/http"
