@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"upendo/pages"
+
+	"github.com/solgar/upendo/pages"
 	"github.com/solgar/upendo/router"
 	"github.com/solgar/upendo/session"
 	"github.com/solgar/upendo/settings"
@@ -23,7 +24,7 @@ var (
 
 // Start function starts upendo application with given name
 func Start(appName string) {
-	fmt.Printf("upendo ver %s", VersionMajor + "." + VersionMinor)
+	fmt.Printf("upendo ver %s", VersionMajor+"."+VersionMinor)
 	fmt.Printf(" running: %s", appName)
 	fmt.Println()
 

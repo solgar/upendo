@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
+
 	"github.com/solgar/upendo/router"
 	"github.com/solgar/upendo/session"
 	"github.com/solgar/upendo/settings"
@@ -182,7 +183,6 @@ func LoadPageTemplate(name string) (*Page, error) {
 	rawData, err := ioutil.ReadFile(settings.StartDir + "templates/" + name + ".html")
 	if err != nil {
 		panic(err)
-		return nil, err
 	}
 
 	parts := make([]PagePart, 0)
