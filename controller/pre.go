@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"reflect"
 	"strings"
-	"upendo/router"
-	"upendo/session"
+	"github.com/solgar/upendo/router"
+	"github.com/solgar/upendo/session"
 )
 
 var (

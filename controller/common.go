@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"reflect"
-	"upendo/pages"
-	"upendo/settings"
+	"github.com/solgar/upendo/pages"
+	"github.com/solgar/upendo/settings"
 )
 
 var (

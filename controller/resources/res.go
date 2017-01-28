@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"upendo/router"
-	"upendo/settings"
+	"github.com/solgar/upendo/router"
+	"github.com/solgar/upendo/settings"
 )
 
 // Resources is simple controller to handle resources at paths /res/* /css/* and /js/*

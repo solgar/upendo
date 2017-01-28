@@ -14,9 +14,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"upendo/database"
-	"upendo/security"
-	"upendo/settings"
+	"github.com/solgar/upendo/database"
+	"github.com/solgar/upendo/security"
+	"github.com/solgar/upendo/settings"
 )
 
 const (

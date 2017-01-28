@@ -6,13 +6,13 @@ import (
 	"os"
 	"os/signal"
 	"upendo/pages"
-	"upendo/router"
-	"upendo/session"
-	"upendo/settings"
+	"github.com/solgar/upendo/router"
+	"github.com/solgar/upendo/session"
+	"github.com/solgar/upendo/settings"
 
 	// blank import to only trigger init
-	_ "upendo/controller"
-	_ "upendo/controller/resources"
+	_ "github.com/solgar/upendo/controller"
+	_ "github.com/solgar/upendo/controller/resources"
 )
 
 // Upendo version variables

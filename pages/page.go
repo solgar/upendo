@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
-	"upendo/router"
-	"upendo/session"
-	"upendo/settings"
+	"github.com/solgar/upendo/router"
+	"github.com/solgar/upendo/session"
+	"github.com/solgar/upendo/settings"
 )
 
 const (

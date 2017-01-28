@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"strconv"
-	"upendo/router"
+	"github.com/solgar/upendo/router"
 )
 
 type ErrorsController router.Controller

@@ -10,7 +10,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
-	"upendo/settings"
+	"github.com/solgar/upendo/settings"
 )
 
 const (
