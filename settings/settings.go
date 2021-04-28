@@ -34,6 +34,12 @@ var (
 	// if map files are ignored (js.map, css.map)
 	IgnoreMapFiles bool
 
+	// cert file
+	CertFile string
+
+	// key file
+	KeyFile string
+
 	// not implemented yet
 	LoadSettingsFromFile bool
 )
@@ -49,6 +55,8 @@ func init() {
 	flag.BoolVar(&IgnoreMapFiles, "ignore-map-files", true, "if \"true\" \"file not found\" errors for .map files will be ignored")
 	flag.IntVar(&RoutingChainMax, "routing-chain-max", 4, "limits maximum routing calls to specified value")
 	flag.BoolVar(&LoadSettingsFromFile, "settings-from-file", false, "if \"true\" tries to read settings from settings.json - *not implemented yet*")
+	flag.StringVar(&CertFile, "cert-file", "", "relative location of cert file")
+	flag.StringVar(&KeyFile, "key-file", "", "relative location of key file")
 	flag.Parse()
 	if len(StartDir) > 0 && strings.HasSuffix(StartDir, "/") == false {
 		StartDir = StartDir + "/"

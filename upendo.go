@@ -32,7 +32,11 @@ func Start(appName string) {
 
 	fmt.Println("Listening on port", ":"+settings.ServicePort)
 	http.HandleFunc("/", router.RouteRequest)
-	fmt.Println(http.ListenAndServe(":"+settings.ServicePort, nil))
+	if settings.CertFile != "" && settings.KeyFile != "" {
+		fmt.Println(http.ListenAndServeTLS(":"+settings.ServicePort, settings.CertFile, settings.KeyFile, nil))
+	} else {
+		fmt.Println(http.ListenAndServe(":"+settings.ServicePort, nil))
+	}
 }
 
 // setup is called in main function to start listening for system signals and
