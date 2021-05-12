@@ -13,7 +13,7 @@ type ErrorsController router.Controller
 func InstallErrors() {
 	errorsPath := "GET /error/"
 	router.AddPath(errorsPath+":errorCode", ErrorsController{}, "HandleErrors")
-	for k, _ := range router.ErrorsRouting {
+	for k := range router.ErrorsRouting {
 		router.ErrorsRouting[k] = errorsPath + strconv.Itoa(k)
 	}
 }
