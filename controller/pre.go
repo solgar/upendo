@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"reflect"
 	"strings"
+
 	"github.com/solgar/upendo/router"
 	"github.com/solgar/upendo/session"
 )
@@ -12,7 +13,7 @@ var (
 	smanager *session.Manager = session.GetManager()
 )
 
-func init() {
+func RegisterPreRouteFunctions() {
 	router.AddPreRouteFunc(CheckSession)
 	router.AddPreRouteFunc(CheckCookies)
 }

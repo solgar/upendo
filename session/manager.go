@@ -14,6 +14,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
 	"github.com/solgar/upendo/database"
 	"github.com/solgar/upendo/security"
 	"github.com/solgar/upendo/settings"
@@ -31,6 +32,7 @@ var (
 	instance         *Manager
 	roleIntValueMap  = map[string]int{"anon": 1, "user": 2, "admin": 3, "root": 4}
 	sessionsFilePath = settings.StartDir + "sessions.json"
+	initDone         = false
 )
 
 type response struct {
@@ -67,7 +69,14 @@ type Manager struct {
 }
 
 ///////////////////////////////////////////////////////////////// functions
-func init() {
+func Initialize() {
+	if initDone {
+		panic("Initialization already done.")
+	}
+	initDone = true
+
+	security.Initialize()
+
 	instance = &Manager{}
 	instance.initialize()
 	go instance.commandProcessor()

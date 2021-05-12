@@ -19,9 +19,15 @@ const (
 
 var (
 	letterRunes = []rune("abcdefghijklmnopqrstuvwxyz1234567890")
+	initDone    = false
 )
 
-func init() {
+func Initialize() {
+	if initDone {
+		panic("Initialization already done.")
+	}
+	initDone = true
+
 	rand.Seed(time.Now().Unix())
 }
 

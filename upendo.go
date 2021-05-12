@@ -6,14 +6,12 @@ import (
 	"os"
 	"os/signal"
 
+	"github.com/solgar/upendo/controller"
+	"github.com/solgar/upendo/controller/resources"
 	"github.com/solgar/upendo/pages"
 	"github.com/solgar/upendo/router"
 	"github.com/solgar/upendo/session"
 	"github.com/solgar/upendo/settings"
-
-	// blank import to only trigger init
-	_ "github.com/solgar/upendo/controller"
-	_ "github.com/solgar/upendo/controller/resources"
 )
 
 // Upendo version variables
@@ -24,6 +22,12 @@ var (
 
 // Start function starts upendo application with given name
 func Start(appName string) {
+	settings.Initialize()
+
+	controller.RegisterPreRouteFunctions()
+	controller.InstallErrors()
+	resources.Install()
+
 	fmt.Printf("upendo ver %s", VersionMajor+"."+VersionMinor)
 	fmt.Printf(" running: %s", appName)
 	fmt.Println()

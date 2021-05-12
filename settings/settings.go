@@ -44,7 +44,7 @@ var (
 	LoadSettingsFromFile bool
 )
 
-func init() {
+func Initialize() {
 	flag.StringVar(&StartDir, "start-dir", "", "app start directory, defaults to \".\"")
 	flag.StringVar(&ServicePort, "port", "8080", "port for service to listen on")
 	flag.BoolVar(&ReloadTemplates, "reload-templates", false, "if \"true\" then on each request page templates are reloaded")

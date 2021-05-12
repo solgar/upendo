@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
 	"github.com/solgar/upendo/router"
 	"github.com/solgar/upendo/settings"
 )
@@ -15,7 +16,7 @@ import (
 // Resources is simple controller to handle resources at paths /res/* /css/* and /js/*
 type Resources map[string]interface{}
 
-func init() {
+func Install() {
 	router.Add("GET", "/res/:file", Resources{}, "ImageResource")
 	router.Add("GET", "/css/:file", Resources{}, "CSSResource")
 	router.Add("GET", "/js/:file", Resources{}, "JSResource")
