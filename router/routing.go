@@ -209,8 +209,6 @@ func findRoutingEntry(method, path string) *routingEntry {
 			return e
 		}
 	}
-
-	return nil
 }
 
 func MakeCleanParams(params map[string]interface{}) map[string]interface{} {
