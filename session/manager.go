@@ -103,6 +103,10 @@ func GetManager() *Manager {
 
 // Deinit shuts down session management and if proper option was set it stores session data into a json file.
 func Deinit() {
+	if instance == nil {
+		fmt.Println("Session manager inactive, nothing to deinitialize.")
+		return
+	}
 	b, err := json.Marshal(instance.activeSessionsMap)
 	if err != nil {
 		fmt.Println("Cannot marshal sessions:", err)
