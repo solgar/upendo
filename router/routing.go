@@ -368,9 +368,9 @@ func setHeaderValue(w http.ResponseWriter, key string, controller reflect.Value)
 }
 
 func setHeaderValues(w http.ResponseWriter, c reflect.Value) {
-	controller := c.Interface().(map[string]interface{})
-	if h, ok := controller["headers"]; ok {
-		headers := h.(map[string]string)
+	headersV := c.MapIndex(reflect.ValueOf("headers"))
+	if headersV.IsValid() {
+		headers := headersV.Interface().(map[string]string)
 		for k, v := range headers {
 			w.Header().Set(k, v)
 		}
