@@ -10,6 +10,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+
 	"github.com/solgar/upendo/settings"
 )
 
@@ -310,6 +311,7 @@ func routeRequest(w http.ResponseWriter, r *http.Request, method, path string, c
 	controller.SetMapIndex(reflect.ValueOf("request"), reflect.ValueOf(r))
 	controller.SetMapIndex(reflect.ValueOf("method"), reflect.ValueOf(r.Method))
 	controller.SetMapIndex(reflect.ValueOf("path"), reflect.ValueOf(path))
+	controller.SetMapIndex(reflect.ValueOf("headers"), reflect.ValueOf(map[string]string{}))
 
 	if entry.varPlace != -1 {
 		varValueBeginStr := path[entry.varPlace+1:]
@@ -333,6 +335,9 @@ func routeRequest(w http.ResponseWriter, r *http.Request, method, path string, c
 
 	setHeaderValue(w, "Content-Type", controller)
 	setHeaderValue(w, "Location", controller)
+
+	setHeaderValues(w, controller)
+
 	statusCode := setStatusCode(w, controller)
 
 	if statusCode != 303 {
@@ -359,6 +364,16 @@ func setHeaderValue(w http.ResponseWriter, key string, controller reflect.Value)
 	value := controller.MapIndex(reflect.ValueOf(key))
 	if value.IsValid() {
 		w.Header().Set(key, value.Interface().(string))
+	}
+}
+
+func setHeaderValues(w http.ResponseWriter, c reflect.Value) {
+	controller := c.Interface().(map[string]interface{})
+	if h, ok := controller["headers"]; ok {
+		headers := h.(map[string]string)
+		for k, v := range headers {
+			w.Header().Set(k, v)
+		}
 	}
 }
 

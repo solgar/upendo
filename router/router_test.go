@@ -1,6 +1,9 @@
 package router
 
 import (
+	"fmt"
+	"net/http"
+	"reflect"
 	"testing"
 )
 
@@ -89,4 +92,27 @@ func TestFindingRoutingEntry(t *testing.T) {
 
 	e = findRoutingEntry("GET", "/no/path")
 	assert(e == nil, "Wrong key.")
+}
+
+type testResponseWriter struct{ header http.Header }
+
+func (trw testResponseWriter) Write([]byte) (int, error)  { return 0, nil }
+func (trw testResponseWriter) WriteHeader(statusCode int) {}
+func (trw testResponseWriter) Header() http.Header        { return trw.header }
+
+func TestSetHeaderValuesUsingMap(t *testing.T) {
+	var w http.ResponseWriter = testResponseWriter{header: make(http.Header)}
+	controller := map[string]interface{}{}
+
+	controller["headers"] = map[string]string{"K1": "v1", "K2": "v2", "K3": "v3"}
+
+	setHeaderValues(w, reflect.ValueOf(controller))
+
+	headers := controller["headers"].(map[string]string)
+	fmt.Println(w.Header())
+	for k, v := range w.Header() {
+		assert(headers[k] == v[0], "headers doesn't match")
+	}
+
+	fmt.Println(w.Header())
 }
