@@ -20,6 +20,10 @@ const (
 
 type Controller map[string]interface{}
 
+func (c Controller) AddHeader(k, v string) {
+	c["headers"].(map[string]string)[k] = v
+}
+
 var (
 	ErrorsRouting = map[int]string{
 		http.StatusBadRequest:          "GET /error/400", // BAD REQUEST
